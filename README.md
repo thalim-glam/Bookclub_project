@@ -13,7 +13,7 @@
 
 ## Installation
 - Here are the installation process :
-  - Repository of the Bookclub-Blog project:  https://github.com/sav-the-sag/book_club_blog_p2 
+  - Repository of the Bookclub-Blog project: https://github.com/thalim-glam/Bookclub_project 
   - Clone the repository or download the zip folder.
   - Open the source code in any code editor, we used VSCode.
   - Open the integrated terminal or git bash to test the application.
