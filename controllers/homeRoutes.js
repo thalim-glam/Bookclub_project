@@ -3,17 +3,16 @@ const router = require('express').Router();
 const { Post, User } = require('../models');
 const withAuth = require('../utils/auth');
 
-// router.get('/', async (req, res) => {
-//   try {
-//     console.log("error in homeRoutes!")
-//     res.render('homepage')//, {
+router.get('/', async (req, res) => {
+  try {
+    res.render('homepage')
 
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json("OH NOOOOO!!!! not again X[");
-//   }
-// });
-router.get("/", async (req, res) => {
+  } catch (err) {
+    console.log(err);
+    res.status(500).json("OH NO");
+  }
+});
+router.get("/dashboard", async (req, res) => {
   try {
       // get all blogPosts and JOIN with user data and comment data
       const blogPostData = await Post.findAll({
@@ -22,10 +21,6 @@ router.get("/", async (req, res) => {
             model: User,
             attributes: ["name"],
           },
-          // {
-          //   model: Comment,
-          //   attributes: ["comment_body"],
-          // },
         ],
       });
   
@@ -49,15 +44,14 @@ router.get("/", async (req, res) => {
 // If the user is logged in, they can see the post data
 router.get('/post/:id', async (req, res) => {
   try {
-
     const dbPostData = await Post.findByPk(
       req.params.id
     );
     const post = dbPostData.get({ plain: true });
     res.json(post)
-  } catch (error) {
-    console.log(error);
-    res.status(500).json(error);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
   }
 });
 
@@ -71,9 +65,9 @@ router.get('/user/:id', async (req, res) => {
     );
     const user = dbUserData.get({ plain: true });
     res.json(user);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json(error);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
   }
 });
 
